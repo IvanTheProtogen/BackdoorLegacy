@@ -101,7 +101,7 @@ Execy.MouseButton1Click:Connect(function()
 				childy:FireServer(CodeStr)
 			elseif childy:IsA("RemoteFunction") then
 				-- Else if it is a RemoteFunction, invoke it with code!
-				InvokeFunc(childy, CodeStr)
+				InvokeFunc:Fire(childy, CodeStr)
 			end
 			-- Keep looping through descendants, until dead end.
 			DeepFire(childy)
