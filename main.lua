@@ -2,7 +2,7 @@
 
 for _a, CheckBackdoorLegacy in game:GetService('CoreGui'):GetChildren() do
 	-- Does it have exact same name and class..?
-	if CheckBackdoorLegacy.Name = "BackdoorLegacy" and CheckBackdoorLegacy:IsA("ScreenGuiL") then
+	if CheckBackdoorLegacy.Name == "BackdoorLegacy" and CheckBackdoorLegacy:IsA("ScreenGuiL") then
 		-- If so...DESTROY IT!!!
 		CheckBackdoorLegacy:Destroy()
 	end
