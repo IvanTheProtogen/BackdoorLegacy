@@ -102,11 +102,11 @@ Execy.MouseButton1Click:Connect(function()
 				-- Check the class of the descendant.
 				if childy:IsA("RemoteEvent") then
 					-- If it is a RemoteEvent, fire it with code!
-					error("Backdoor Legacy // Running "..childy.ClassName..' "'..childy.Name..'".',0)
+					print("Backdoor Legacy // Running "..childy.ClassName..' "'..childy.Name..'".')
 					childy:FireServer(CodeStr)
 				elseif childy:IsA("RemoteFunction") then
 					-- Else if it is a RemoteFunction, invoke it with code!
-					error("Backdoor Legacy // Running "..childy.ClassName..' "'..childy.Name..'".',0)
+					print("Backdoor Legacy // Running "..childy.ClassName..' "'..childy.Name..'".')
 					InvokeFunc:Fire(childy, CodeStr)
 				end
 			end
