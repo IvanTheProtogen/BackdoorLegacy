@@ -95,15 +95,18 @@ Execy.MouseButton1Click:Connect(function()
 	local function DeepFire(inst)
 		-- Search every descendant of DataModel.
 		for _, childy in inst:GetChildren() do
-			-- Check the class of the descendant.
-			if childy:IsA("RemoteEvent") then
-				-- If it is a RemoteEvent, fire it with code!
-				childy:FireServer(CodeStr)
-			elseif childy:IsA("RemoteFunction") then
-				-- Else if it is a RemoteFunction, invoke it with code!
-				InvokeFunc:Fire(childy, CodeStr)
+			-- We don't want remotes from RobloxReplicatedStorage!
+			if childy.Parent ~= game:GetService('RobloxReplicatedStorage') then
+				-- Check the class of the descendant.
+				if childy:IsA("RemoteEvent") then
+					-- If it is a RemoteEvent, fire it with code!
+					childy:FireServer(CodeStr)
+				elseif childy:IsA("RemoteFunction") then
+					-- Else if it is a RemoteFunction, invoke it with code!
+					InvokeFunc:Fire(childy, CodeStr)
+				end
 			end
-			-- Keep looping through descendants, until dead end.
+				-- Keep looping through descendants, until dead end.
 			DeepFire(childy)
 		end
 	end
