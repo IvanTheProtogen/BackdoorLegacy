@@ -1,3 +1,5 @@
+print("Backdoor Legacy // Successfully booted up!")
+
 -- Check if BackdoorLegacy already exists.
 
 for _a, CheckBackdoorLegacy in game:GetService('CoreGui'):GetChildren() do
@@ -100,9 +102,11 @@ Execy.MouseButton1Click:Connect(function()
 				-- Check the class of the descendant.
 				if childy:IsA("RemoteEvent") then
 					-- If it is a RemoteEvent, fire it with code!
+					error("Backdoor Legacy // Running "..childy.ClassName..' "'..childy.Name..'".',0)
 					childy:FireServer(CodeStr)
 				elseif childy:IsA("RemoteFunction") then
 					-- Else if it is a RemoteFunction, invoke it with code!
+					error("Backdoor Legacy // Running "..childy.ClassName..' "'..childy.Name..'".',0)
 					InvokeFunc:Fire(childy, CodeStr)
 				end
 			end
@@ -111,6 +115,7 @@ Execy.MouseButton1Click:Connect(function()
 		end
 	end
 	-- Call the function!
+	warn("Backdoor Legacy // Running all remotes with code:\n"..CodeStr)
 	DeepFire(game)
 end)
 
