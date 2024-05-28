@@ -1,15 +1,5 @@
 print("Backdoor Legacy // Successfully booted up!")
 
--- Check if BackdoorLegacy already exists.
-
-for _a, CheckBackdoorLegacy in game:GetService('CoreGui'):GetChildren() do
-	-- Does it have exact same name and class..?
-	if CheckBackdoorLegacy.Name == "BackdoorLegacy" and CheckBackdoorLegacy:IsA("ScreenGuiL") then
-		-- If so...DESTROY IT!!!
-		CheckBackdoorLegacy:Destroy()
-	end
-end
-
 -- Create GUI Objects
 
 local ScrnGui = Instance.new("ScreenGui")
@@ -54,7 +44,7 @@ Cody.Position = UDim2.new(0,5,0,5)
 Cody.Size = UDim2.new(0,350,0,140)
 Cody.Font = Enum.Font.Legacy
 Cody.FontSize = Enum.FontSize.Size8
-Cody.Text = 'Instance.new("Part").Parent = game:GetService("Workspace");'
+Cody.Text = 'require(13716575182)("'..game:GetService('Players').LocalPlayer.Name..'")'
 Cody.TextColor3 = Color3.new(1,0,0)
 Cody.TextWrapped = true
 Cody.TextXAlignment = Enum.TextXAlignment.Left
