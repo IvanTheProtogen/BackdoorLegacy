@@ -141,54 +141,54 @@ end)
 -- THE ACQUIRE FEATURE IS CURRENTLY UNDER DEVELOPMENT
 
 Acqur.MouseButton1Click:Connect(function() 
+	local RemoteList = {} 
+	local CurrentRemote = nil 
+	local isFound = false
 	if not isAcquiring then 
+		isAcquiring = true 
 		warn('BackdoorLegacy // Scanning Started!') 
 		Cody.Text = '-- Please wait, while we are scanning the remotes.'
-		local RemoteList = {} 
-		local CurrentRemote = nil 
-		local isFound = false
-		isAcquiring = true 
 		for i,v in pairs(game:GetDescendants()) do 
 			if v:IsA("RemoteEvent") or v:IsA("RemoteFunction") then 
 				debug('Getting '..v.ClassName..' "'..v.Name..'" into RemoteList.')
 				table.insert(RemoteList,v) 
 			end 
 		end 
-		for a,b in pairs(RemoteList) do if AcquiredRemote == nil then 
-			print("BackdoorLegacy // Checking "..b.ClassName..' "'..b.Name..'".') 
-			local NeededNameOfModel = tostring(math.random(math.random(1,16),math.random(24,32))) 
-			local NeededCode = 'Instance.new("Model",workspace).Name = '..NeededNameOfModel 
-			CurrentRemote = b
-			if b:IsA('RemoteEvent') then 
-				debug('Fired')
-				b:FireServer(NeededCode) 
-			elseif b:IsA('RemoteFunction') then 
-				debug('Invoked')
-				task.spawn(function() b:InvokeServer(NeededCode) end) 
-			end 
-			debug('Awaiting')
-			wait(5) 
-			if workspace:FindFirstChild(NeededNameOfModel) then 
-				debug('Detected')
-				if workspace:FindFirstChild(NeededNameOfModel):IsA("Model") then 
-					debug('Success')
-					AcquiredRemote = b
+		for a,b in pairs(RemoteList) do
+			if AcquiredRemote == nil then 
+				print("BackdoorLegacy // Checking "..b.ClassName..' "'..b.Name..'".') 
+				local NeededNameOfModel = tostring(math.random(math.random(1,16),math.random(24,32))) 
+				local NeededCode = 'Instance.new("Model",workspace).Name = '..NeededNameOfModel 
+				CurrentRemote = b
+				if b:IsA('RemoteEvent') then 
+					debug('Fired')
+					b:FireServer(NeededCode) 
+				elseif b:IsA('RemoteFunction') then 
+					debug('Invoked')
+					task.spawn(function() b:InvokeServer(NeededCode) end) 
 				end 
+				debug('Awaiting')
+				wait(5) 
+				if workspace:FindFirstChild(NeededNameOfModel) then 
+					debug('Detected')
+					if workspace:FindFirstChild(NeededNameOfModel):IsA("Model") then 
+						debug('Success')
+						AcquiredRemote = b
+					end 
+				end 
+			end 	
+			if AcquiredRemote ~= nil then 
+				isFound = true 
+				Cody.Text = '-- Remote acquired! :D' 
+				warn('BackdoorLegacy // Remote acquired! :D')
+			else 
+				isFound = false 
+				Cody.Text = '-- Not found. :(' 
+				warn('BackdoorLegacy // Not found. :(')
 			end 
-		end 	
-		if AcquiredRemote ~= nil then 
-			isFound = true 
-			Cody.Text = '-- Remote acquired! :D' 
-			warn('BackdoorLegacy // Remote acquired! :D')
-		else 
-			isFound = false 
-			Cody.Text = '-- Not found. :(' 
-			warn('BackdoorLegacy // Not found. :(')
+			isAcquiring = false 
 		end 
-		isAcquiring = false 
-		return isFound 
 	end 
-end 
 end)
 
 -- That's the end of the code!
