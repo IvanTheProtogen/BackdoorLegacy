@@ -47,6 +47,3 @@ game.DescendantAdded:Connect(function(inst)
 end) 
 
 CreateRatchet() -- New ratchet 
-
--- The rest of the Plugin's code goes here below.
-
