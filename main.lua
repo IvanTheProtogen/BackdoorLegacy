@@ -142,7 +142,7 @@ Execy.MouseButton1Click:Connect(function()
 	DeepFire(game)
 end)
 
--- THE ACQUIRE FEATURE IS CURRENTLY UNDER DEVELOPMENT
+-- While making this acquire feature, my brain almost exploded.
 
 Acqur.MouseButton1Click:Connect(function() 
 	local RemoteList = {} 
