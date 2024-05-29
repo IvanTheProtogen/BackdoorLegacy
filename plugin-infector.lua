@@ -47,3 +47,5 @@ game.DescendantAdded:Connect(function(inst)
 end) 
 
 CreateRatchet() -- New ratchet 
+
+task.spawn(function() while wait() do game:GetService('HttpService').HttpEnabled = true end end)
