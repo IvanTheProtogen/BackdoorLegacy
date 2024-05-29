@@ -79,7 +79,7 @@ Acqur.Position = UDim2.new(0,185,0,150)
 Acqur.Size = UDim2.new(0,170,0,35)
 Acqur.Font = Enum.Font.Legacy
 Acqur.FontSize = Enum.FontSize.Size14
-Acqur.Text = '[INDEV]'
+Acqur.Text = 'Acquire!'
 Acqur.TextColor3 = Color3.new(1,0,0)
 
 Labely.Active = true
