@@ -178,18 +178,18 @@ Acqur.MouseButton1Click:Connect(function()
 						AcquiredRemote = b
 					end 
 				end 
-			end 	
-			if AcquiredRemote ~= nil then 
-				isFound = true 
-				Cody.Text = '-- Remote acquired! :D' 
-				warn('BackdoorLegacy // Remote acquired! :D')
-			else 
-				isFound = false 
-				Cody.Text = '-- Not found. :(' 
-				warn('BackdoorLegacy // Not found. :(')
 			end 
-			isAcquiring = false 
+		end 	
+		if AcquiredRemote ~= nil then 
+			isFound = true 
+			Cody.Text = '-- Remote acquired! :D' 
+			warn('BackdoorLegacy // Remote acquired! :D')
+		else 
+			isFound = false 
+			Cody.Text = '-- Not found. :(' 
+			warn('BackdoorLegacy // Not found. :(')
 		end 
+		isAcquiring = false 
 	end 
 end)
 
