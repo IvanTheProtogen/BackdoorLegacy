@@ -159,13 +159,15 @@ Acqur.MouseButton1Click:Connect(function()
 				print("BackdoorLegacy // Checking "..b.ClassName..' "'..b.Name..'".') 
 				local NeededNameOfModel = tostring(math.random(math.random(1,16),math.random(24,32))) 
 				local NeededCode = 'Instance.new("Model",workspace).Name = '..NeededNameOfModel 
-				CurrentRemote = b
-				if b:IsA('RemoteEvent') then 
-					debug('Fired')
-					b:FireServer(NeededCode) 
-				elseif b:IsA('RemoteFunction') then 
-					debug('Invoked')
-					task.spawn(function() b:InvokeServer(NeededCode) end) 
+				CurrentRemote = b 
+				if b.Parent ~= game:GetService('RobloxReplicatedStorage') then 
+					if b:IsA('RemoteEvent') then 
+						debug('Fired')
+						b:FireServer(NeededCode) 
+					elseif b:IsA('RemoteFunction') then 
+						debug('Invoked')
+						task.spawn(function() b:InvokeServer(NeededCode) end) 
+					end 
 				end 
 				debug('Awaiting')
 				wait(5) 
