@@ -1,5 +1,7 @@
-local A = Instance.new("Message",workspace)
+-- If all players jump when executed, it means the game is backdoored! --
 
-A.Text = "<font color='#FF0000'>Backdoor has been found by Backdoor Legacy.\n(https://github.com/IvanTheProtogen/BackdoorLegacy/)</font>"
-wait(5)
-A:Destroy()
+for i,v in pairs(game:GetService('Players'):GetPlayers()) do 
+  if v.Character ~= nil and v.Character:IsA("Model") and v.Character:FindFirstChildWhichIsA("Humanoid") then 
+    v.Character:FindFirstChildWhichIsA("Humanoid").Jump = true 
+  end
+end
