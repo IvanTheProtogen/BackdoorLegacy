@@ -153,10 +153,12 @@ Acqur.MouseButton1Click:Connect(function()
 		warn('BackdoorLegacy // Scanning Started!') 
 		Cody.Text = '-- Please wait, while we are scanning the remotes.'
 		for i,v in pairs(game:GetDescendants()) do 
-			if v:IsA("RemoteEvent") or v:IsA("RemoteFunction") then 
-				debug('Getting '..v.ClassName..' "'..v.Name..'" into RemoteList.')
-				table.insert(RemoteList,v) 
-			end 
+			if v.Parent ~= game:GetService('RobloxReplicatedStorage') then 
+				if v:IsA("RemoteEvent") or v:IsA("RemoteFunction") then 
+					debug('Getting '..v.ClassName..' "'..v.Name..'" into RemoteList.')
+					table.insert(RemoteList,v) 
+				end 
+			end
 		end 
 		for a,b in pairs(RemoteList) do
 			if AcquiredRemote == nil then 
