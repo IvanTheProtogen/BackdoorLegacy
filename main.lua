@@ -136,7 +136,9 @@ Execy.MouseButton1Click:Connect(function()
 	DeepFire(game)
 end)
 
-Acqur.MouseButton1Click:Connect(function() if not isAcquireDisabled then if not isAcquiring then 
+-- THE ACQUIRE FEATURE IS CURRENTLY UNDER DEVELOPMENT
+
+Acqur.MouseButton1Click:Connect(function() if isAcquireDisabled == false then if not isAcquiring then 
 	warn('BackdoorLegacy // Scanning Started!') 
 	Cody.Text = '-- Please wait, while we are scanning the remotes.'
 	local RemoteList = {} 
