@@ -1,6 +1,8 @@
 print("Backdoor Legacy // Successfully booted up!")
 local function debug(msg)
-	game:GetService('TestService'):Message('BackdoorLegacy // '..tostring(msg)) -- This is for debugging.
+	if 0 == 1 then 
+	game:GetService('TestService'):Message('BackdoorLegacy // '..tostring(msg)) -- This is for debugging. 
+	end
 end 
 
 -- Create GUI Objects
@@ -75,7 +77,7 @@ Acqur.Position = UDim2.new(0,185,0,150)
 Acqur.Size = UDim2.new(0,170,0,35)
 Acqur.Font = Enum.Font.Legacy
 Acqur.FontSize = Enum.FontSize.Size14
-Acqur.Text = '[INDEV]'
+Acqur.Text = 'Acquire!'
 Acqur.TextColor3 = Color3.new(1,0,0)
 
 Labely.Active = true
@@ -138,8 +140,6 @@ Execy.MouseButton1Click:Connect(function()
 	DeepFire(game)
 end)
 
--- THE ACQUIRE FEATURE IS CURRENTLY UNDER DEVELOPMENT
-
 Acqur.MouseButton1Click:Connect(function() 
 	local RemoteList = {} 
 	local CurrentRemote = nil 
@@ -156,30 +156,31 @@ Acqur.MouseButton1Click:Connect(function()
 		end 
 		for a,b in pairs(RemoteList) do
 			if AcquiredRemote == nil then 
-				print("BackdoorLegacy // Checking "..b.ClassName..' "'..b.Name..'".') 
-				local NeededNameOfModel = tostring(math.random(math.random(1,16),math.random(24,32))) 
-				local NeededCode = 'Instance.new("Model",workspace).Name = '..NeededNameOfModel 
-				CurrentRemote = b 
 				if b.Parent ~= game:GetService('RobloxReplicatedStorage') then 
-					if b:IsA('RemoteEvent') then 
-						debug('Fired')
-						b:FireServer(NeededCode) 
-					elseif b:IsA('RemoteFunction') then 
-						debug('Invoked')
-						task.spawn(function() b:InvokeServer(NeededCode) end) 
+					print("BackdoorLegacy // Checking "..b.ClassName..' "'..b.Name..'".') 
+					local NeededNameOfModel = tostring(math.random(math.random(1,16),math.random(24,32))) 
+					local NeededCode = 'Instance.new("Model",workspace).Name = '..NeededNameOfModel 
+					CurrentRemote = b 
+						if b:IsA('RemoteEvent') then 
+							debug('Fired')
+							b:FireServer(NeededCode) 
+						elseif b:IsA('RemoteFunction') then 
+							debug('Invoked')
+							task.spawn(function() b:InvokeServer(NeededCode) end) 
+						end 
 					end 
-				end 
-				debug('Awaiting')
-				wait(5) 
-				if workspace:FindFirstChild(NeededNameOfModel) then 
-					debug('Detected')
-					if workspace:FindFirstChild(NeededNameOfModel):IsA("Model") then 
-						debug('Success')
-						AcquiredRemote = b
+					debug('Awaiting')
+					wait(2.5) 
+					if workspace:FindFirstChild(NeededNameOfModel) then 
+						debug('Detected')
+						if workspace:FindFirstChild(NeededNameOfModel):IsA("Model") then 
+							debug('Success')
+							AcquiredRemote = b
+						end 
 					end 
 				end 
 			end 
-		end 	
+		end 
 		if AcquiredRemote ~= nil then 
 			isFound = true 
 			Cody.Text = '-- Remote acquired! :D' 
