@@ -44,7 +44,7 @@ Cody.Position = UDim2.new(0,5,0,5)
 Cody.Size = UDim2.new(0,350,0,140)
 Cody.Font = Enum.Font.Legacy
 Cody.FontSize = Enum.FontSize.Size8
-Cody.Text = 'require(13716575182)("'..game:GetService('Players').LocalPlayer.Name..'")'
+Cody.Text = 'game:GetService("TextChatService"):WaitForChild("TextChannels"):WaitForChild("RBXGeneral"):DisplaySystemMessage("<font color='.."'#FF5733'"..'>Backdoor detected by BackdoorLegacy. (https://github.com/IvanTheProtogen/BackdoorLegacy/)");'
 Cody.TextColor3 = Color3.new(1,0,0)
 Cody.TextWrapped = true
 Cody.TextXAlignment = Enum.TextXAlignment.Left
