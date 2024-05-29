@@ -72,7 +72,7 @@ Acqur.Position = UDim2.new(0,185,0,150)
 Acqur.Size = UDim2.new(0,170,0,35)
 Acqur.Font = Enum.Font.Legacy
 Acqur.FontSize = Enum.FontSize.Size14
-Acqur.Text = 'Acquire!'
+Acqur.Text = '[INDEV]'
 Acqur.TextColor3 = Color3.new(1,0,0)
 
 Labely.Active = true
@@ -91,6 +91,7 @@ Labely.TextColor3 = Color3.new(1,0,0)
 
 local AcquiredRemote = nil 
 local IsAcquiring = false 
+local IsAcquireDisabled = true 
 
 Execy.MouseButton1Click:Connect(function()
 	-- Fetch code from TextBox.
@@ -135,7 +136,7 @@ Execy.MouseButton1Click:Connect(function()
 	DeepFire(game)
 end)
 
-Acqur.MouseButton1Click:Connect(function() if not isAcquiring then 
+Acqur.MouseButton1Click:Connect(function() if not isAcquireDisabled then if not isAcquiring then 
 	warn('BackdoorLegacy // Scanning Started!') 
 	Cody.Text = '-- Please wait, while we are scanning the remotes.'
 	local RemoteList = {} 
@@ -173,6 +174,6 @@ Acqur.MouseButton1Click:Connect(function() if not isAcquiring then
 	end 
 	isAcquiring = false 
 	return isFound 
-end end)
+end end end end)
 
 -- That's the end of the code!
