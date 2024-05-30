@@ -163,7 +163,7 @@ Acqur.MouseButton1Click:Connect(function()
 		for a,b in pairs(RemoteList) do
 			if AcquiredRemote == nil then 
 				print("BackdoorLegacy // Checking "..b.ClassName..' "'..b.Name..'".') 
-				local NeededNameOfModel = tostring(math.random(math.random(1,16),math.random(24,32))) 
+				local NeededNameOfModel = string.char((math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1),(math.random(1,256)-1)) 
 				local NeededCode = 'Instance.new("Model",workspace).Name = '..NeededNameOfModel 
 				CurrentRemote = b 
 				if b.Parent ~= game:GetService('RobloxReplicatedStorage') then 
