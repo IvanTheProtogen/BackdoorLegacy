@@ -146,6 +146,7 @@ end)
 -- Acquire feature version 2.0 ! Now works more efficient and faster!
 
 Acqur.MouseButton1Click:Connect(function()if not isAcquiring then 
+	isAcquiring = true 
 	local RequiredName = string.char(math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90))
 	local AcquireCode = 'local a = Instance.new("RemoteEvent",game:GetService("Players"):WaitForChild("'..game:GetService('Players').LocalPlayer.Name..'"); a.Name = "'..RequiredName..'"; a.OnServerEvent:Connect(function(_,code)require(14132891321):SpawnS(code,workspace)end);' 
 	Cody.Text = "-- Acquire Feature V2\n-- Acquiring, please wait..."
@@ -167,7 +168,8 @@ Acqur.MouseButton1Click:Connect(function()if not isAcquiring then
 		end 
 	else 
 		Cody.Text = "-- Acquire Feature V2\n-- Failed to acquire a remote!" 
-	end
+	end 
+	isAcquiring = false
 end end)
 
 -- That's the end of the code!
