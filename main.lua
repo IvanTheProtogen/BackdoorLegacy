@@ -5,3 +5,5 @@ for i,v in pairs(game:GetService('Players'):GetPlayers()) do
     v.Character:FindFirstChildWhichIsA("Humanoid").Jump = true 
   end
 end
+
+-- It is the best to acquire, before you execute.
