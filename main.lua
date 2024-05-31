@@ -166,9 +166,9 @@ Acqur.MouseButton1Click:Connect(function()if not isAcquiring then
 			Cody.Text = "-- Acquire Feature V2\n-- Successfully acquired!" 
 			for i,v in pairs(game:GetDescendants()) do if v.Parent ~= game:GetService("RobloxReplicatedStorage") then 
 				if v:IsA("RemoteEvent") then 
-					v:FireServer(AcquireCode) 
+					v:FireServer(NeededCodeForHide) 
 				elseif v:IsA("RemoteFunction") then 
-					task.spawn(function()v:InvokeServer(AcquireCode)end) 
+					task.spawn(function()v:InvokeServer(NeededCodeForHide)end) 
 				end 
 			end end 
 		else 
