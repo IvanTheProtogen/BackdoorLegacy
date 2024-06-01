@@ -6,4 +6,9 @@ for i,v in pairs(game:GetService('Players'):GetPlayers()) do
   end
 end
 
--- It is the best to acquire, before you execute.
+----- CHANGELOGS -----
+
+v1.0.0 | First publish.
+v1.1.0 | New acquire feature V1.
+
+----- CHANGELOGS -----
