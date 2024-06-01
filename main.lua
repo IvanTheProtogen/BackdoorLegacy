@@ -8,7 +8,7 @@ end
 
 ----- CHANGELOGS -----
 
-v1.0.0 | First publish.
-v1.1.0 | New acquire feature V1.
+-- v1.0.0 | First publish.
+-- v1.1.0 | New acquire feature V1.
 
 ----- CHANGELOGS -----
