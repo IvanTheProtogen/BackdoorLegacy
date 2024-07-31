@@ -6,28 +6,16 @@ local RecreateRatchet
 local ConnectRatchet
 local CreateRatchet
 
-spawn(function()
-
-spawn(function()
-
 RecreateRatchet = function()spawn(function()
     pcall(function()ratchet:Destroy()end)
     CreateRatchet()
 end)end
-
-end)
-
-spawn(function()
 
 ConnectRatchet = function(inst)pcall(function()
     inst.Changed:Connect(function()
         RecreateRatchet()
     end)
 end)end
-
-end)
-
-spawn(function()
 
 CreateRatchet = function()
     ratchet = Instance.new("Script",
@@ -38,11 +26,5 @@ CreateRatchet = function()
     
     ConnectRatchet(ratchet)
 end
-
-end)
-
-end)
-
-wait(1)
 
 CreateRatchet()
