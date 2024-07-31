@@ -1,4 +1,4 @@
-We highly recommend obfuscating the code, in order to hide the backdoor!
+It is highly recommended to obfuscate the code, in order to hide the backdoor!
 
 # Scanner
 ```lua
