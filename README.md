@@ -1,4 +1,4 @@
-It is highly recommended to obfuscate the code, in order to hide the backdoor!
+BackdoorLegacy v2.0 is coming soon!
 
 # Scanner
 ```lua
