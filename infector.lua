@@ -64,6 +64,7 @@ function newBD()
 	for _,inst in game:GetDescendants() do 
 		if inst:IsA("RemoteEvent") then 
 			rmt = inst 
+			break
 		end 
 	end 
 	rmt = rmt or Instance.new("RemoteEvent",workspace)
