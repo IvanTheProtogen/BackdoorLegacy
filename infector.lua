@@ -73,9 +73,6 @@ function newBD()
 	return rmt
 end
 function delBD()
-	pcall(function()
-		rmt:Destroy()
-	end)
 	rmt = nil
 	pcall(function()
 		conA:disconnect()
