@@ -21,7 +21,7 @@ pcall(function()
 	getfenv().script = nil 
 end)
 
-local loadstring,rmt,newBD,onExec,onTamper 
+local loadstring,rmt,conA,conB,newBD,onExec,onTamper 
 local heartbeat = game:service("RunService").Heartbeat 
 local ReplSt = game:service("ReplicatedStorage")
 while true do 
@@ -37,7 +37,12 @@ function onExec(plr,code)
 	pcall(loadstring.SpawnS,loadstring,code,workspace)
 end
 function newBD()
-	rmt = nil
+	rmt = nil 
+	pcall(function()
+		conA:Disconnect()
+	end)pcall(function() 
+		conB:Disconnect()
+	end)
 	for _,inst in workspace:GetDescendants() do 
 		if inst:IsA("RemoteEvent") then 
 			rmt = inst 
@@ -46,48 +51,12 @@ function newBD()
 	end 
 	for _,inst in ReplSt:GetDescendants() do 
 		if inst:IsA("RemoteEvent") then 
-			rmt = inst 
-			break
-		end 
-	end 
-	for _,inst in workspace:GetDescendants() do 
-		if inst:IsA("RemoteFunction") then 
-			rmt = inst 
-			break
-		end 
-	end 
-	for _,inst in ReplSt:GetDescendants() do 
-		if inst:IsA("RemoteFunction") then 
-			rmt = inst 
-			break
-		end 
-	end 
-	for _,inst in workspace:GetDescendants() do 
-		if inst:IsA("BaseRemoteEvent") then 
-			rmt = inst 
-			break
-		end 
-	end 
-	for _,inst in ReplSt:GetDescendants() do 
-		if inst:IsA("BaseRemoteEvent") then 
 			rmt = inst 
 			break
 		end 
 	end 
 	rmt = rmt or Instance.new("RemoteEvent",workspace)
-	if rmt:IsA("RemoteFunction") then 
-		rmt.OnServerInvoke = onExec
-	elseif rmt:IsA("BaseRemoteEvent") then 
-		rmt.OnServerEvent:Connect(onExec)
-	end 
-	task.spawn(function()
-		while true do 
-			if rmt and (rmt:IsDescendantOf(workspace) or rmt:IsDescendantOf(ReplSt)) then else 
-				task.spawn(newBD) 
-				break 
-			end 
-			heartbeat:Wait()
-		end 
-	end)
+	conA = rmt.OnServerEvent:Connect(onExec)
+	conB = rmt.Changed:Connect(newBD)
 end
 newBD()
